@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { openDatabase } from './db/client.js';
+import { withJsonSchema2020 } from './mcp/json-schema-dialect.js';
 import { createMcpServer } from './mcp/server.js';
 import { KeywordMemorySearcher } from './memory/memory-search.js';
 import { MemoryStore } from './memory/memory-store.js';
@@ -36,7 +37,7 @@ async function main(): Promise<void> {
   process.on('SIGINT', () => void shutdown('SIGINT'));
   process.on('SIGTERM', () => void shutdown('SIGTERM'));
 
-  await server.connect(new StdioServerTransport());
+  await server.connect(withJsonSchema2020(new StdioServerTransport()));
   logger.info('MCP server running on stdio.');
 }
 

@@ -72,6 +72,14 @@ try {
   await client.connect(transport);
   const { tools } = await client.listTools();
   console.log('Tools:', tools.map((tool) => tool.name).join(', '));
+  // Newer MCP clients validate with JSON Schema 2020-12 and reject a draft-07 "$schema" declaration.
+  const draft07 = tools.filter((tool) => tool.inputSchema.$schema || tool.outputSchema?.$schema);
+  if (draft07.length > 0) {
+    failed = true;
+    console.error(`✗ tools declare a $schema dialect: ${draft07.map((tool) => tool.name).join(', ')}`);
+  } else {
+    console.log('✓ tool schemas have no draft-07 $schema (2020-12 compatible)');
+  }
 
   await call('register_project', { name: 'My Recipe App', rootPath: repo });
   await call('list_projects', {});
