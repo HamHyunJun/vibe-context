@@ -1,0 +1,19 @@
+{
+  "name": "@vibe-context/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Type definitions shared by the VibeContext server and (later) web dashboard. Types only, no runtime code.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@vibe-context/config": "workspace:*",
+    "typescript": "^7.0.2"
+  }
+}

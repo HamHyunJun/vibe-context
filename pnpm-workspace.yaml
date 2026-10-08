@@ -1,0 +1,9 @@
+packages:
+  - apps/*
+  - packages/*
+
+# pnpm 10 blocks dependency install scripts by default.
+# better-sqlite3 needs its native binding, esbuild (used by tsx / drizzle-kit) needs its binary.
+onlyBuiltDependencies:
+  - better-sqlite3
+  - esbuild

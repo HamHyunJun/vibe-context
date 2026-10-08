@@ -1,0 +1,9 @@
+{
+  "extends": "@vibe-context/config/tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "types": ["node"]
+  },
+  "include": ["src"]
+}

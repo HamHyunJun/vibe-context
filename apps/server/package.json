@@ -1,0 +1,41 @@
+{
+  "name": "@vibe-context/server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VibeContext local MCP server",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "vibe-context-server": "dist/index.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "smoke": "node scripts/smoke-test.mjs",
+    "inspect": "npx -y @modelcontextprotocol/inspector node dist/index.js",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node dist/index.js --migrate-only",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "better-sqlite3": "^13.0.3",
+    "drizzle-orm": "^0.45.3",
+    "simple-git": "^4.0.2",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/node": "^22.19.0",
+    "@vibe-context/config": "workspace:*",
+    "@vibe-context/shared": "workspace:*",
+    "drizzle-kit": "^0.31.11",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
